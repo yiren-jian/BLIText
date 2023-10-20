@@ -1,0 +1,1121 @@
+Last login: Mon Apr 17 17:16:12 on ttys002
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+(py38) iMac:Downloads yirenjian$ ssh Lab2
+Welcome to Ubuntu 20.04.4 LTS (GNU/Linux 5.4.0-110-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+254 updates can be applied immediately.
+184 of these updates are standard security updates.
+To see these additional updates run: apt list --upgradable
+
+New release '22.04.2 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Mon Apr 17 15:48:16 2023 from 10.28.55.104
+(lavis) yiren@mms-large-2:~$ unset LD_LIBRARY_PATH
+(lavis) yiren@mms-large-2:~$ cd LAVIS/
+(lavis) yiren@mms-large-2:~/LAVIS$ bash run_scripts/blip2/train/train_caption_coco.sh
+WARNING:__main__:
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed.
+*****************************************
+| distributed init (rank 4, world 8): env://
+| distributed init (rank 6, world 8): env://
+| distributed init (rank 5, world 8): env://
+| distributed init (rank 0, world 8): env://
+| distributed init (rank 3, world 8): env://
+| distributed init (rank 7, world 8): env://
+| distributed init (rank 1, world 8): env://
+| distributed init (rank 2, world 8): env://
+2023-04-17 17:45:00,789 [INFO]
+=====  Running Parameters    =====
+2023-04-17 17:45:00,790 [INFO] {
+    "accum_grad_iters": 1,
+    "amp": true,
+    "batch_size_eval": 8,
+    "batch_size_train": 16,
+    "device": "cuda",
+    "dist_backend": "nccl",
+    "dist_url": "env://",
+    "distributed": true,
+    "evaluate": false,
+    "gpu": 0,
+    "init_lr": 1e-05,
+    "lr_sched": "linear_warmup_cosine_lr",
+    "max_epoch": 5,
+    "max_len": 30,
+    "min_len": 8,
+    "min_lr": 0,
+    "num_beams": 5,
+    "num_workers": 4,
+    "output_dir": "output/BLIP2/Caption_coco",
+    "rank": 0,
+    "resume_ckpt_path": null,
+    "seed": 42,
+    "task": "captioning",
+    "test_splits": [
+        "test"
+    ],
+    "train_splits": [
+        "train"
+    ],
+    "valid_splits": [
+        "val"
+    ],
+    "warmup_lr": 1e-08,
+    "warmup_steps": 1000,
+    "weight_decay": 0.05,
+    "world_size": 8
+}
+2023-04-17 17:45:00,790 [INFO]
+======  Dataset Attributes  ======
+2023-04-17 17:45:00,790 [INFO]
+======== coco_caption =======
+2023-04-17 17:45:00,791 [INFO] {
+    "build_info": {
+        "annotations": {
+            "test": {
+                "md5": "3ff34b0ef2db02d01c37399f6a2a6cd1",
+                "storage": "coco/annotations/coco_karpathy_test.json",
+                "url": "https://storage.googleapis.com/sfr-vision-language-research/datasets/coco_karpathy_test.json"
+            },
+            "train": {
+                "md5": "aa31ac474cf6250ebb81d18348a07ed8",
+                "storage": "coco/annotations/coco_karpathy_train.json",
+                "url": "https://storage.googleapis.com/sfr-vision-language-research/datasets/coco_karpathy_train.json"
+            },
+            "val": {
+                "md5": "b273847456ef5580e33713b1f7de52a0",
+                "storage": "coco/annotations/coco_karpathy_val.json",
+                "url": "https://storage.googleapis.com/sfr-vision-language-research/datasets/coco_karpathy_val.json"
+            }
+        },
+        "images": {
+            "storage": "coco/images/"
+        }
+    },
+    "data_type": "images",
+    "dataset_card": "dataset_card/coco_caption.md",
+    "text_processor": {
+        "eval": {
+            "name": "blip_caption"
+        },
+        "train": {
+            "name": "blip_caption",
+            "prompt": "a photo of "
+        }
+    },
+    "vis_processor": {
+        "eval": {
+            "image_size": 364,
+            "name": "blip_image_eval"
+        },
+        "train": {
+            "image_size": 364,
+            "name": "blip2_image_train"
+        }
+    }
+}
+2023-04-17 17:45:00,791 [INFO]
+======  Model Attributes  ======
+2023-04-17 17:45:00,791 [INFO] {
+    "arch": "blip2_opt",
+    "drop_path_rate": 0,
+    "finetuned": "https://storage.googleapis.com/sfr-vision-language-research/LAVIS/models/BLIP2/blip2_caption_opt2.7b.pth",
+    "freeze_vit": false,
+    "image_size": 364,
+    "load_finetuned": false,
+    "load_pretrained": true,
+    "model_type": "caption_coco_opt2.7b",
+    "num_query_token": 32,
+    "opt_model": "facebook/opt-2.7b",
+    "pretrained": "/home/yiren/LAVIS/lavis/output/BLIP2/Pretrain_stage2/20230416005/checkpoint_9.pth",
+    "prompt": "a photo of",
+    "use_grad_checkpoint": true,
+    "vit_precision": "fp32"
+}
+Using downloaded and verified file: /home/yiren/lavis_datasets/coco/annotations/coco_karpathy_train.json
+Using downloaded and verified file: /home/yiren/lavis_datasets/coco/annotations/coco_karpathy_val.json
+Using downloaded and verified file: /home/yiren/lavis_datasets/coco/annotations/coco_karpathy_test.json
+2023-04-17 17:45:00,792 [INFO] Building datasets...
+Position interpolate from 16x16 to 26x26
+**********  Loading local pretrained model  **********
+**********  /home/yiren/LAVIS/lavis/output/BLIP2/Pretrain_stage2/20230416005/checkpoint_9.pth  **********
+2023-04-17 17:46:07,643 [INFO] load checkpoint from /home/yiren/LAVIS/lavis/output/BLIP2/Pretrain_stage2/20230416005/checkpoint_9.pth
+2023-04-17 17:46:07,647 [INFO] Start training
+2023-04-17 17:46:10,840 [INFO] dataset_ratios not specified, datasets will be concatenated (map-style datasets) or chained (webdataset.DataPipeline).
+2023-04-17 17:46:10,840 [INFO] Loaded 566747 records for train split from the dataset.
+2023-04-17 17:46:10,840 [INFO] Loaded 5000 records for val split from the dataset.
+2023-04-17 17:46:10,840 [INFO] Loaded 5000 records for test split from the dataset.
+2023-04-17 17:46:10,851 [INFO] number of trainable parameters: 1093619584
+2023-04-17 17:46:10,852 [INFO] Start training epoch 0, 4427 iters per inner epoch.
+Train: data epoch: [0]  [   0/4427]  eta: 6:40:17  lr: 0.000000  loss: 1.8121  time: 5.4253  data: 0.0000  max mem: 21356
+2023-04-17 17:46:16,283 [INFO] Reducer buckets have been rebuilt in this iteration.
+Train: data epoch: [0]  [  50/4427]  eta: 4:01:09  lr: 0.000001  loss: 2.3578  time: 3.2707  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [ 100/4427]  eta: 3:56:54  lr: 0.000001  loss: 1.6136  time: 3.2582  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [ 150/4427]  eta: 3:53:35  lr: 0.000002  loss: 1.6935  time: 3.2626  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [ 200/4427]  eta: 3:50:29  lr: 0.000002  loss: 1.8211  time: 3.2414  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [ 250/4427]  eta: 3:47:36  lr: 0.000003  loss: 1.8864  time: 3.2667  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [ 300/4427]  eta: 3:44:50  lr: 0.000003  loss: 1.7174  time: 3.2560  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [ 350/4427]  eta: 3:42:02  lr: 0.000004  loss: 1.8294  time: 3.2405  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [ 400/4427]  eta: 3:39:08  lr: 0.000004  loss: 1.8031  time: 3.2521  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [ 450/4427]  eta: 3:36:22  lr: 0.000005  loss: 1.8776  time: 3.2787  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [ 500/4427]  eta: 3:33:36  lr: 0.000005  loss: 1.4630  time: 3.2417  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [ 550/4427]  eta: 3:30:48  lr: 0.000006  loss: 2.2296  time: 3.2479  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [ 600/4427]  eta: 3:28:08  lr: 0.000006  loss: 2.2440  time: 3.2732  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [ 650/4427]  eta: 3:25:28  lr: 0.000007  loss: 2.0063  time: 3.2717  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [ 700/4427]  eta: 3:22:47  lr: 0.000007  loss: 1.8301  time: 3.2841  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [ 750/4427]  eta: 3:20:10  lr: 0.000008  loss: 1.8423  time: 3.3065  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [ 800/4427]  eta: 3:17:31  lr: 0.000008  loss: 1.9814  time: 3.3078  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [ 850/4427]  eta: 3:14:51  lr: 0.000009  loss: 1.4727  time: 3.2964  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [ 900/4427]  eta: 3:12:11  lr: 0.000009  loss: 1.7183  time: 3.2700  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [ 950/4427]  eta: 3:09:33  lr: 0.000010  loss: 2.1297  time: 3.3156  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [1000/4427]  eta: 3:06:54  lr: 0.000010  loss: 1.8641  time: 3.2969  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [1050/4427]  eta: 3:04:12  lr: 0.000010  loss: 1.7348  time: 3.2697  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [1100/4427]  eta: 3:01:30  lr: 0.000010  loss: 1.7609  time: 3.2710  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [1150/4427]  eta: 2:58:48  lr: 0.000010  loss: 1.8977  time: 3.2756  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [1200/4427]  eta: 2:56:07  lr: 0.000010  loss: 2.1120  time: 3.2886  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [1250/4427]  eta: 2:53:26  lr: 0.000010  loss: 1.7010  time: 3.2974  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [1300/4427]  eta: 2:50:44  lr: 0.000010  loss: 2.1246  time: 3.2757  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [1350/4427]  eta: 2:48:00  lr: 0.000010  loss: 1.9454  time: 3.2804  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [1400/4427]  eta: 2:45:18  lr: 0.000010  loss: 1.6790  time: 3.2967  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [1450/4427]  eta: 2:42:35  lr: 0.000010  loss: 2.0176  time: 3.2941  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [1500/4427]  eta: 2:39:52  lr: 0.000010  loss: 2.0372  time: 3.2808  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [1550/4427]  eta: 2:37:11  lr: 0.000010  loss: 1.5509  time: 3.3135  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [1600/4427]  eta: 2:34:28  lr: 0.000010  loss: 1.7267  time: 3.2934  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [1650/4427]  eta: 2:31:44  lr: 0.000010  loss: 1.9709  time: 3.2690  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [1700/4427]  eta: 2:28:59  lr: 0.000010  loss: 1.5984  time: 3.2389  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [1750/4427]  eta: 2:26:16  lr: 0.000010  loss: 1.4787  time: 3.2754  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [1800/4427]  eta: 2:23:31  lr: 0.000010  loss: 1.9651  time: 3.2789  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [1850/4427]  eta: 2:20:47  lr: 0.000010  loss: 1.8802  time: 3.3052  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [1900/4427]  eta: 2:18:03  lr: 0.000010  loss: 2.0145  time: 3.2413  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [1950/4427]  eta: 2:15:20  lr: 0.000010  loss: 1.5827  time: 3.2793  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [2000/4427]  eta: 2:12:37  lr: 0.000010  loss: 1.6813  time: 3.2982  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [2050/4427]  eta: 2:09:53  lr: 0.000010  loss: 1.9045  time: 3.2840  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [2100/4427]  eta: 2:07:09  lr: 0.000010  loss: 1.7599  time: 3.2692  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [2150/4427]  eta: 2:04:25  lr: 0.000010  loss: 2.0129  time: 3.2860  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [2200/4427]  eta: 2:01:42  lr: 0.000010  loss: 1.5983  time: 3.2809  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [2250/4427]  eta: 1:58:58  lr: 0.000010  loss: 1.7432  time: 3.2870  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [2300/4427]  eta: 1:56:12  lr: 0.000010  loss: 1.9854  time: 3.2501  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [2350/4427]  eta: 1:53:28  lr: 0.000010  loss: 1.7384  time: 3.2527  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [2400/4427]  eta: 1:50:43  lr: 0.000010  loss: 1.8156  time: 3.2720  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [2450/4427]  eta: 1:47:58  lr: 0.000010  loss: 1.8318  time: 3.2421  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [2500/4427]  eta: 1:45:14  lr: 0.000010  loss: 1.7497  time: 3.2795  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [2550/4427]  eta: 1:42:30  lr: 0.000010  loss: 2.0548  time: 3.2791  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [2600/4427]  eta: 1:39:46  lr: 0.000010  loss: 1.5191  time: 3.2810  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [2650/4427]  eta: 1:37:02  lr: 0.000010  loss: 1.6655  time: 3.2738  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [2700/4427]  eta: 1:34:18  lr: 0.000010  loss: 1.3866  time: 3.3277  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [2750/4427]  eta: 1:31:35  lr: 0.000010  loss: 1.6922  time: 3.3159  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [2800/4427]  eta: 1:28:51  lr: 0.000010  loss: 1.8075  time: 3.2507  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [2850/4427]  eta: 1:26:07  lr: 0.000010  loss: 1.8801  time: 3.2881  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [2900/4427]  eta: 1:23:23  lr: 0.000010  loss: 1.8267  time: 3.2869  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [2950/4427]  eta: 1:20:39  lr: 0.000010  loss: 1.7505  time: 3.2819  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [3000/4427]  eta: 1:17:56  lr: 0.000010  loss: 1.6899  time: 3.2914  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [3050/4427]  eta: 1:15:13  lr: 0.000010  loss: 1.6182  time: 3.3274  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [3100/4427]  eta: 1:12:29  lr: 0.000010  loss: 1.7676  time: 3.2746  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [3150/4427]  eta: 1:09:45  lr: 0.000010  loss: 1.9669  time: 3.2716  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [3200/4427]  eta: 1:07:01  lr: 0.000010  loss: 1.7874  time: 3.2709  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [3250/4427]  eta: 1:04:17  lr: 0.000010  loss: 1.7308  time: 3.2897  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [3300/4427]  eta: 1:01:33  lr: 0.000010  loss: 1.8638  time: 3.2761  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [3350/4427]  eta: 0:58:49  lr: 0.000010  loss: 1.8590  time: 3.2603  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [3400/4427]  eta: 0:56:06  lr: 0.000010  loss: 2.1595  time: 3.3013  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [3450/4427]  eta: 0:53:22  lr: 0.000010  loss: 1.4130  time: 3.2647  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [3500/4427]  eta: 0:50:38  lr: 0.000010  loss: 1.5115  time: 3.2764  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [3550/4427]  eta: 0:47:54  lr: 0.000010  loss: 1.7840  time: 3.2725  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [3600/4427]  eta: 0:45:10  lr: 0.000010  loss: 1.5647  time: 3.2665  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [3650/4427]  eta: 0:42:26  lr: 0.000010  loss: 1.7462  time: 3.2663  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [3700/4427]  eta: 0:39:43  lr: 0.000010  loss: 1.6779  time: 3.2948  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [3750/4427]  eta: 0:36:59  lr: 0.000010  loss: 2.1602  time: 3.2890  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [3800/4427]  eta: 0:34:15  lr: 0.000010  loss: 2.0542  time: 3.3016  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [3850/4427]  eta: 0:31:31  lr: 0.000010  loss: 1.9722  time: 3.2915  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [3900/4427]  eta: 0:28:47  lr: 0.000010  loss: 1.8026  time: 3.3167  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [3950/4427]  eta: 0:26:04  lr: 0.000010  loss: 1.7769  time: 3.2965  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [4000/4427]  eta: 0:23:20  lr: 0.000010  loss: 1.8960  time: 3.2762  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [4050/4427]  eta: 0:20:36  lr: 0.000010  loss: 1.9790  time: 3.2697  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [4100/4427]  eta: 0:17:52  lr: 0.000010  loss: 1.7434  time: 3.2684  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [4150/4427]  eta: 0:15:08  lr: 0.000010  loss: 1.5947  time: 3.2777  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [4200/4427]  eta: 0:12:24  lr: 0.000010  loss: 1.9704  time: 3.2787  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [4250/4427]  eta: 0:09:40  lr: 0.000010  loss: 1.8851  time: 3.2720  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [4300/4427]  eta: 0:06:56  lr: 0.000010  loss: 1.6040  time: 3.2924  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [4350/4427]  eta: 0:04:12  lr: 0.000010  loss: 1.9426  time: 3.3213  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [4400/4427]  eta: 0:01:28  lr: 0.000010  loss: 1.4587  time: 3.3113  data: 0.0000  max mem: 34614
+Train: data epoch: [0]  [4426/4427]  eta: 0:00:03  lr: 0.000010  loss: 1.8645  time: 3.2944  data: 0.0000  max mem: 34614
+Train: data epoch: [0] Total time: 4:01:57 (3.2792 s / it)
+2023-04-17 21:48:07,916 [INFO] Averaged stats: lr: 0.0000  loss: 1.8253
+2023-04-17 21:48:07,918 [INFO] Evaluating on val.
+/home/yiren/anaconda3/envs/lavis/lib/python3.8/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+/home/yiren/anaconda3/envs/lavis/lib/python3.8/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+/home/yiren/anaconda3/envs/lavis/lib/python3.8/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+/home/yiren/anaconda3/envs/lavis/lib/python3.8/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+/home/yiren/anaconda3/envs/lavis/lib/python3.8/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+/home/yiren/anaconda3/envs/lavis/lib/python3.8/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+/home/yiren/anaconda3/envs/lavis/lib/python3.8/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+/home/yiren/anaconda3/envs/lavis/lib/python3.8/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+Evaluation  [ 0/79]  eta: 0:03:48    time: 2.8924  data: 0.4881  max mem: 34614
+Evaluation  [10/79]  eta: 0:02:37    time: 2.2883  data: 0.0451  max mem: 34614
+Evaluation  [20/79]  eta: 0:02:13    time: 2.2399  data: 0.0008  max mem: 34614
+Evaluation  [30/79]  eta: 0:01:50    time: 2.2466  data: 0.0008  max mem: 34614
+Evaluation  [40/79]  eta: 0:01:31    time: 2.4044  data: 0.0008  max mem: 34614
+Evaluation  [50/79]  eta: 0:01:07    time: 2.4222  data: 0.0008  max mem: 34614
+Evaluation  [60/79]  eta: 0:00:44    time: 2.3384  data: 0.0008  max mem: 34614
+Evaluation  [70/79]  eta: 0:00:20    time: 2.3273  data: 0.0008  max mem: 34614
+Evaluation  [78/79]  eta: 0:00:02    time: 2.2089  data: 0.0110  max mem: 34614
+Evaluation Total time: 0:03:01 (2.3021 s / it)
+2023-04-17 21:51:09,810 [WARNING] rank 0 starts merging results.
+result file saved to /home/yiren/LAVIS/lavis/output/BLIP2/Caption_coco/20230417174/result/val_epoch0.json
+Using downloaded and verified file: /home/yiren/lavis_datasets/coco_gt/coco_karpathy_val_gt.json
+loading annotations into memory...
+Done (t=0.02s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+tokenization...
+PTBTokenizer tokenized 307821 tokens at 1611487.12 tokens per second.
+PTBTokenizer tokenized 53438 tokens at 466119.68 tokens per second.
+setting up scorers...
+computing Bleu score...
+{'testlen': 48286, 'reflen': 47852, 'guess': [48286, 43286, 38286, 33286], 'correct': [39731, 23988, 12663, 6318]}
+ratio: 1.0090696313633494
+Bleu_1: 0.823
+Bleu_2: 0.675
+Bleu_3: 0.532
+Bleu_4: 0.411
+computing METEOR score...
+METEOR: 0.306
+computing Rouge score...
+ROUGE_L: 0.604
+computing CIDEr score...
+CIDEr: 1.367
+computing SPICE score...
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.nustaq.serialization.FSTClazzInfo (file:/home/yiren/anaconda3/envs/lavis/lib/python3.8/site-packages/pycocoevalcap/spice/lib/fst-2.47.jar) to field java.lang.String.value
+WARNING: Please consider reporting this to the maintainers of org.nustaq.serialization.FSTClazzInfo
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+Parsing reference captions
+Parsing test captions
+Initiating Stanford parsing pipeline
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator tokenize
+[main] INFO edu.stanford.nlp.pipeline.TokenizerAnnotator - TokenizerAnnotator: No tokenizer type provided. Defaulting to PTBTokenizer.
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator ssplit
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator parse
+[main] INFO edu.stanford.nlp.parser.common.ParserGrammar - Loading parser from serialized file edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz ...
+done [0.3 sec].
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator lemma
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator ner
+Loading classifier from edu/stanford/nlp/models/ner/english.all.3class.distsim.crf.ser.gz ... done [0.8 sec].
+Loading classifier from edu/stanford/nlp/models/ner/english.muc.7class.distsim.crf.ser.gz ... done [0.6 sec].
+Loading classifier from edu/stanford/nlp/models/ner/english.conll.4class.distsim.crf.ser.gz ... done [0.7 sec].
+Threads( StanfordCoreNLP ) [6.889 seconds]
+Warning: Nashorn engine is planned to be removed from a future JDK release
+SPICE evaluation took: 14.49 s
+SPICE: 0.241
+Bleu_1: 0.823
+Bleu_2: 0.675
+Bleu_3: 0.532
+Bleu_4: 0.411
+METEOR: 0.306
+ROUGE_L: 0.604
+CIDEr: 1.367
+SPICE: 0.241
+2023-04-17 21:51:39,826 [INFO] Saving checkpoint at epoch 0 to /home/yiren/LAVIS/lavis/output/BLIP2/Caption_coco/20230417174/checkpoint_best.pth.
+2023-04-17 21:51:51,881 [INFO] Start training
+2023-04-17 21:51:51,906 [INFO] Start training epoch 1, 4427 iters per inner epoch.
+Train: data epoch: [1]  [   0/4427]  eta: 7:04:31  lr: 0.000009  loss: 1.7904  time: 5.7536  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [  50/4427]  eta: 4:00:24  lr: 0.000009  loss: 1.8351  time: 3.2561  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [ 100/4427]  eta: 3:56:38  lr: 0.000009  loss: 1.7083  time: 3.2873  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [ 150/4427]  eta: 3:54:06  lr: 0.000009  loss: 1.8775  time: 3.2817  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [ 200/4427]  eta: 3:51:14  lr: 0.000009  loss: 1.7417  time: 3.2998  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [ 250/4427]  eta: 3:48:40  lr: 0.000009  loss: 1.5109  time: 3.3032  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [ 300/4427]  eta: 3:45:53  lr: 0.000009  loss: 2.1094  time: 3.2594  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [ 350/4427]  eta: 3:43:11  lr: 0.000009  loss: 1.9648  time: 3.2743  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [ 400/4427]  eta: 3:40:22  lr: 0.000009  loss: 1.5874  time: 3.2713  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [ 450/4427]  eta: 3:37:35  lr: 0.000009  loss: 1.6699  time: 3.2842  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [ 500/4427]  eta: 3:34:48  lr: 0.000009  loss: 1.9536  time: 3.2708  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [ 550/4427]  eta: 3:32:01  lr: 0.000009  loss: 1.4575  time: 3.2856  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [ 600/4427]  eta: 3:29:17  lr: 0.000009  loss: 1.8070  time: 3.2846  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [ 650/4427]  eta: 3:26:32  lr: 0.000009  loss: 1.6971  time: 3.2700  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [ 700/4427]  eta: 3:23:43  lr: 0.000009  loss: 1.6528  time: 3.2572  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [ 750/4427]  eta: 3:20:54  lr: 0.000009  loss: 1.5993  time: 3.2612  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [ 800/4427]  eta: 3:18:08  lr: 0.000009  loss: 1.8225  time: 3.2465  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [ 850/4427]  eta: 3:15:24  lr: 0.000009  loss: 1.7403  time: 3.2855  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [ 900/4427]  eta: 3:12:38  lr: 0.000009  loss: 1.9253  time: 3.2765  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [ 950/4427]  eta: 3:09:54  lr: 0.000009  loss: 1.7003  time: 3.2793  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [1000/4427]  eta: 3:07:09  lr: 0.000009  loss: 1.9760  time: 3.2734  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [1050/4427]  eta: 3:04:25  lr: 0.000009  loss: 2.2015  time: 3.2797  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [1100/4427]  eta: 3:01:41  lr: 0.000009  loss: 1.7172  time: 3.2667  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [1150/4427]  eta: 2:58:56  lr: 0.000009  loss: 1.6126  time: 3.2899  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [1200/4427]  eta: 2:56:15  lr: 0.000009  loss: 1.6065  time: 3.2975  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [1250/4427]  eta: 2:53:33  lr: 0.000009  loss: 1.8894  time: 3.2894  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [1300/4427]  eta: 2:50:49  lr: 0.000009  loss: 1.5255  time: 3.2815  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [1350/4427]  eta: 2:48:04  lr: 0.000009  loss: 1.4725  time: 3.2707  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [1400/4427]  eta: 2:45:20  lr: 0.000009  loss: 1.6193  time: 3.2791  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [1450/4427]  eta: 2:42:36  lr: 0.000009  loss: 1.9281  time: 3.2636  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [1500/4427]  eta: 2:39:53  lr: 0.000009  loss: 1.6983  time: 3.2934  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [1550/4427]  eta: 2:37:09  lr: 0.000009  loss: 1.8288  time: 3.2935  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [1600/4427]  eta: 2:34:27  lr: 0.000009  loss: 1.5643  time: 3.2934  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [1650/4427]  eta: 2:31:44  lr: 0.000009  loss: 1.9631  time: 3.2981  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [1700/4427]  eta: 2:29:01  lr: 0.000009  loss: 1.8382  time: 3.2890  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [1750/4427]  eta: 2:26:18  lr: 0.000009  loss: 1.5567  time: 3.2917  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [1800/4427]  eta: 2:23:35  lr: 0.000009  loss: 2.0935  time: 3.3210  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [1850/4427]  eta: 2:20:53  lr: 0.000009  loss: 2.0555  time: 3.2927  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [1900/4427]  eta: 2:18:11  lr: 0.000009  loss: 1.7120  time: 3.2999  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [1950/4427]  eta: 2:15:28  lr: 0.000009  loss: 1.5851  time: 3.2936  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [2000/4427]  eta: 2:12:45  lr: 0.000009  loss: 1.8075  time: 3.3026  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [2050/4427]  eta: 2:10:01  lr: 0.000009  loss: 1.9912  time: 3.2888  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [2100/4427]  eta: 2:07:16  lr: 0.000009  loss: 1.7168  time: 3.2710  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [2150/4427]  eta: 2:04:32  lr: 0.000009  loss: 1.8784  time: 3.2713  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [2200/4427]  eta: 2:01:48  lr: 0.000009  loss: 1.7380  time: 3.2836  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [2250/4427]  eta: 1:59:02  lr: 0.000009  loss: 1.7687  time: 3.2512  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [2300/4427]  eta: 1:56:18  lr: 0.000009  loss: 2.0363  time: 3.2979  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [2350/4427]  eta: 1:53:34  lr: 0.000009  loss: 1.7043  time: 3.2735  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [2400/4427]  eta: 1:50:50  lr: 0.000009  loss: 1.9532  time: 3.2857  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [2450/4427]  eta: 1:48:05  lr: 0.000009  loss: 1.8866  time: 3.2762  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [2500/4427]  eta: 1:45:22  lr: 0.000009  loss: 2.0289  time: 3.3122  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [2550/4427]  eta: 1:42:39  lr: 0.000009  loss: 1.3671  time: 3.2809  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [2600/4427]  eta: 1:39:55  lr: 0.000009  loss: 1.9768  time: 3.2823  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [2650/4427]  eta: 1:37:11  lr: 0.000009  loss: 1.5481  time: 3.2881  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [2700/4427]  eta: 1:34:26  lr: 0.000009  loss: 1.6812  time: 3.2738  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [2750/4427]  eta: 1:31:42  lr: 0.000009  loss: 1.5860  time: 3.2641  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [2800/4427]  eta: 1:28:58  lr: 0.000009  loss: 2.1760  time: 3.2738  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [2850/4427]  eta: 1:26:13  lr: 0.000009  loss: 1.6247  time: 3.2435  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [2900/4427]  eta: 1:23:30  lr: 0.000009  loss: 1.8920  time: 3.2807  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [2950/4427]  eta: 1:20:45  lr: 0.000009  loss: 1.7278  time: 3.2864  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [3000/4427]  eta: 1:18:01  lr: 0.000009  loss: 1.8528  time: 3.2802  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [3050/4427]  eta: 1:15:17  lr: 0.000009  loss: 1.9661  time: 3.2843  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [3100/4427]  eta: 1:12:32  lr: 0.000009  loss: 1.7364  time: 3.2631  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [3150/4427]  eta: 1:09:48  lr: 0.000009  loss: 1.9338  time: 3.2676  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [3200/4427]  eta: 1:07:04  lr: 0.000009  loss: 1.7384  time: 3.2920  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [3250/4427]  eta: 1:04:20  lr: 0.000009  loss: 1.8059  time: 3.2888  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [3300/4427]  eta: 1:01:36  lr: 0.000009  loss: 1.7111  time: 3.2782  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [3350/4427]  eta: 0:58:52  lr: 0.000009  loss: 1.7877  time: 3.2411  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [3400/4427]  eta: 0:56:07  lr: 0.000009  loss: 1.8171  time: 3.2751  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [3450/4427]  eta: 0:53:23  lr: 0.000009  loss: 1.7218  time: 3.2488  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [3500/4427]  eta: 0:50:39  lr: 0.000009  loss: 2.0718  time: 3.2973  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [3550/4427]  eta: 0:47:55  lr: 0.000009  loss: 1.8373  time: 3.2600  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [3600/4427]  eta: 0:45:11  lr: 0.000009  loss: 1.7487  time: 3.2566  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [3650/4427]  eta: 0:42:27  lr: 0.000009  loss: 1.7323  time: 3.2658  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [3700/4427]  eta: 0:39:43  lr: 0.000009  loss: 2.0813  time: 3.2706  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [3750/4427]  eta: 0:36:59  lr: 0.000009  loss: 1.8450  time: 3.2628  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [3800/4427]  eta: 0:34:15  lr: 0.000009  loss: 1.8043  time: 3.2533  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [3850/4427]  eta: 0:31:31  lr: 0.000009  loss: 1.8052  time: 3.2487  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [3900/4427]  eta: 0:28:47  lr: 0.000009  loss: 1.7154  time: 3.2856  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [3950/4427]  eta: 0:26:03  lr: 0.000009  loss: 1.8273  time: 3.2751  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [4000/4427]  eta: 0:23:19  lr: 0.000009  loss: 1.9254  time: 3.3080  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [4050/4427]  eta: 0:20:35  lr: 0.000009  loss: 1.9579  time: 3.2905  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [4100/4427]  eta: 0:17:51  lr: 0.000009  loss: 2.0128  time: 3.2835  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [4150/4427]  eta: 0:15:08  lr: 0.000009  loss: 1.7280  time: 3.2919  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [4200/4427]  eta: 0:12:24  lr: 0.000009  loss: 1.6773  time: 3.2938  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [4250/4427]  eta: 0:09:40  lr: 0.000009  loss: 1.9519  time: 3.2742  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [4300/4427]  eta: 0:06:56  lr: 0.000009  loss: 1.6585  time: 3.2684  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [4350/4427]  eta: 0:04:12  lr: 0.000009  loss: 1.7216  time: 3.2694  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [4400/4427]  eta: 0:01:28  lr: 0.000009  loss: 1.8091  time: 3.2540  data: 0.0000  max mem: 34614
+Train: data epoch: [1]  [4426/4427]  eta: 0:00:03  lr: 0.000009  loss: 1.8809  time: 3.2760  data: 0.0000  max mem: 34614
+Train: data epoch: [1] Total time: 4:01:52 (3.2782 s / it)
+2023-04-18 01:53:44,613 [INFO] Averaged stats: lr: 0.0000  loss: 1.7698
+2023-04-18 01:53:44,615 [INFO] Evaluating on val.
+/home/yiren/anaconda3/envs/lavis/lib/python3.8/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+Evaluation  [ 0/79]  eta: 0:03:46    time: 2.8709  data: 0.4672  max mem: 34614
+Evaluation  [10/79]  eta: 0:02:34    time: 2.2434  data: 0.0432  max mem: 34614
+Evaluation  [20/79]  eta: 0:02:12    time: 2.2091  data: 0.0008  max mem: 34614
+Evaluation  [30/79]  eta: 0:01:48    time: 2.2116  data: 0.0008  max mem: 34614
+Evaluation  [40/79]  eta: 0:01:27    time: 2.2233  data: 0.0008  max mem: 34614
+Evaluation  [50/79]  eta: 0:01:04    time: 2.2559  data: 0.0008  max mem: 34614
+Evaluation  [60/79]  eta: 0:00:42    time: 2.2375  data: 0.0008  max mem: 34614
+Evaluation  [70/79]  eta: 0:00:20    time: 2.2497  data: 0.0008  max mem: 34614
+Evaluation  [78/79]  eta: 0:00:02    time: 2.1937  data: 0.0089  max mem: 34614
+Evaluation Total time: 0:02:56 (2.2299 s / it)
+2023-04-18 01:56:46,082 [WARNING] rank 0 starts merging results.
+result file saved to /home/yiren/LAVIS/lavis/output/BLIP2/Caption_coco/20230417174/result/val_epoch1.json
+Using downloaded and verified file: /home/yiren/lavis_datasets/coco_gt/coco_karpathy_val_gt.json
+loading annotations into memory...
+Done (t=0.02s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+tokenization...
+PTBTokenizer tokenized 307821 tokens at 1642029.32 tokens per second.
+PTBTokenizer tokenized 53123 tokens at 477513.10 tokens per second.
+setting up scorers...
+computing Bleu score...
+{'testlen': 48003, 'reflen': 47659, 'guess': [48003, 43003, 38003, 33003], 'correct': [39764, 24141, 12840, 6451]}
+ratio: 1.0072179441448414
+Bleu_1: 0.828
+Bleu_2: 0.682
+Bleu_3: 0.540
+Bleu_4: 0.419
+computing METEOR score...
+METEOR: 0.308
+computing Rouge score...
+ROUGE_L: 0.609
+computing CIDEr score...
+CIDEr: 1.389
+computing SPICE score...
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.nustaq.serialization.FSTClazzInfo (file:/home/yiren/anaconda3/envs/lavis/lib/python3.8/site-packages/pycocoevalcap/spice/lib/fst-2.47.jar) to field java.lang.String.value
+WARNING: Please consider reporting this to the maintainers of org.nustaq.serialization.FSTClazzInfo
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+Parsing reference captions
+Parsing test captions
+Initiating Stanford parsing pipeline
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator tokenize
+[main] INFO edu.stanford.nlp.pipeline.TokenizerAnnotator - TokenizerAnnotator: No tokenizer type provided. Defaulting to PTBTokenizer.
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator ssplit
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator parse
+[main] INFO edu.stanford.nlp.parser.common.ParserGrammar - Loading parser from serialized file edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz ...
+done [0.3 sec].
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator lemma
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator ner
+Loading classifier from edu/stanford/nlp/models/ner/english.all.3class.distsim.crf.ser.gz ... done [0.7 sec].
+Loading classifier from edu/stanford/nlp/models/ner/english.muc.7class.distsim.crf.ser.gz ... done [0.4 sec].
+Loading classifier from edu/stanford/nlp/models/ner/english.conll.4class.distsim.crf.ser.gz ... done [0.5 sec].
+Threads( StanfordCoreNLP ) [5.539 seconds]
+Warning: Nashorn engine is planned to be removed from a future JDK release
+SPICE evaluation took: 11.98 s
+SPICE: 0.242
+Bleu_1: 0.828
+Bleu_2: 0.682
+Bleu_3: 0.540
+Bleu_4: 0.419
+METEOR: 0.308
+ROUGE_L: 0.609
+CIDEr: 1.389
+SPICE: 0.242
+2023-04-18 01:57:13,255 [INFO] Saving checkpoint at epoch 1 to /home/yiren/LAVIS/lavis/output/BLIP2/Caption_coco/20230417174/checkpoint_best.pth.
+2023-04-18 01:57:31,902 [INFO] Start training
+2023-04-18 01:57:31,928 [INFO] Start training epoch 2, 4427 iters per inner epoch.
+Train: data epoch: [2]  [   0/4427]  eta: 7:12:57  lr: 0.000007  loss: 1.7047  time: 5.8680  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [  50/4427]  eta: 4:03:30  lr: 0.000007  loss: 1.7509  time: 3.3017  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [ 100/4427]  eta: 3:59:04  lr: 0.000007  loss: 1.6323  time: 3.2957  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [ 150/4427]  eta: 3:55:17  lr: 0.000007  loss: 1.6724  time: 3.2701  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [ 200/4427]  eta: 3:52:01  lr: 0.000007  loss: 1.8712  time: 3.2641  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [ 250/4427]  eta: 3:49:13  lr: 0.000007  loss: 1.8092  time: 3.2987  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [ 300/4427]  eta: 3:46:15  lr: 0.000007  loss: 1.5543  time: 3.2836  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [ 350/4427]  eta: 3:43:18  lr: 0.000007  loss: 1.3554  time: 3.2703  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [ 400/4427]  eta: 3:40:24  lr: 0.000007  loss: 1.5933  time: 3.2723  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [ 450/4427]  eta: 3:37:39  lr: 0.000007  loss: 1.6603  time: 3.2652  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [ 500/4427]  eta: 3:34:54  lr: 0.000007  loss: 1.6436  time: 3.2816  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [ 550/4427]  eta: 3:32:02  lr: 0.000007  loss: 1.5075  time: 3.2321  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [ 600/4427]  eta: 3:29:10  lr: 0.000007  loss: 1.9466  time: 3.2650  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [ 650/4427]  eta: 3:26:23  lr: 0.000007  loss: 1.7572  time: 3.2388  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [ 700/4427]  eta: 3:23:35  lr: 0.000007  loss: 1.8840  time: 3.2623  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [ 750/4427]  eta: 3:20:54  lr: 0.000007  loss: 1.5844  time: 3.2933  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [ 800/4427]  eta: 3:18:07  lr: 0.000007  loss: 1.6044  time: 3.2597  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [ 850/4427]  eta: 3:15:22  lr: 0.000007  loss: 1.6582  time: 3.2849  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [ 900/4427]  eta: 3:12:37  lr: 0.000007  loss: 1.7022  time: 3.2691  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [ 950/4427]  eta: 3:09:49  lr: 0.000007  loss: 1.8267  time: 3.2283  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [1000/4427]  eta: 3:07:05  lr: 0.000007  loss: 1.8853  time: 3.2759  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [1050/4427]  eta: 3:04:19  lr: 0.000007  loss: 1.4305  time: 3.2398  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [1100/4427]  eta: 3:01:31  lr: 0.000007  loss: 1.8697  time: 3.2467  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [1150/4427]  eta: 2:58:46  lr: 0.000007  loss: 1.7385  time: 3.2513  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [1200/4427]  eta: 2:56:00  lr: 0.000007  loss: 1.7611  time: 3.2585  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [1250/4427]  eta: 2:53:15  lr: 0.000007  loss: 1.6533  time: 3.2641  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [1300/4427]  eta: 2:50:29  lr: 0.000007  loss: 1.6223  time: 3.2400  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [1350/4427]  eta: 2:47:48  lr: 0.000007  loss: 1.9193  time: 3.2954  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [1400/4427]  eta: 2:45:05  lr: 0.000007  loss: 1.6724  time: 3.2815  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [1450/4427]  eta: 2:42:23  lr: 0.000007  loss: 1.4555  time: 3.2835  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [1500/4427]  eta: 2:39:39  lr: 0.000007  loss: 1.7200  time: 3.2715  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [1550/4427]  eta: 2:36:55  lr: 0.000007  loss: 1.8437  time: 3.2717  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [1600/4427]  eta: 2:34:08  lr: 0.000007  loss: 1.7220  time: 3.2298  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [1650/4427]  eta: 2:31:24  lr: 0.000007  loss: 1.8993  time: 3.2823  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [1700/4427]  eta: 2:28:42  lr: 0.000007  loss: 1.7861  time: 3.2935  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [1750/4427]  eta: 2:25:59  lr: 0.000007  loss: 1.7934  time: 3.2814  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [1800/4427]  eta: 2:23:15  lr: 0.000007  loss: 1.9919  time: 3.2632  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [1850/4427]  eta: 2:20:34  lr: 0.000007  loss: 2.0626  time: 3.2935  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [1900/4427]  eta: 2:17:52  lr: 0.000007  loss: 1.8025  time: 3.3126  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [1950/4427]  eta: 2:15:07  lr: 0.000007  loss: 1.4702  time: 3.2803  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [2000/4427]  eta: 2:12:23  lr: 0.000007  loss: 1.6252  time: 3.2808  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [2050/4427]  eta: 2:09:38  lr: 0.000007  loss: 1.6645  time: 3.2689  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [2100/4427]  eta: 2:06:55  lr: 0.000007  loss: 1.5402  time: 3.2836  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [2150/4427]  eta: 2:04:10  lr: 0.000007  loss: 1.9420  time: 3.2622  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [2200/4427]  eta: 2:01:27  lr: 0.000007  loss: 1.9452  time: 3.2818  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [2250/4427]  eta: 1:58:42  lr: 0.000007  loss: 1.8609  time: 3.2451  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [2300/4427]  eta: 1:55:59  lr: 0.000007  loss: 1.6122  time: 3.2668  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [2350/4427]  eta: 1:53:15  lr: 0.000007  loss: 1.8400  time: 3.2653  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [2400/4427]  eta: 1:50:30  lr: 0.000007  loss: 1.8256  time: 3.2452  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [2450/4427]  eta: 1:47:46  lr: 0.000007  loss: 1.7168  time: 3.2622  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [2500/4427]  eta: 1:45:02  lr: 0.000007  loss: 1.9014  time: 3.2903  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [2550/4427]  eta: 1:42:18  lr: 0.000007  loss: 1.7990  time: 3.2697  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [2600/4427]  eta: 1:39:35  lr: 0.000007  loss: 1.7410  time: 3.2770  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [2650/4427]  eta: 1:36:51  lr: 0.000007  loss: 1.5793  time: 3.2459  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [2700/4427]  eta: 1:34:08  lr: 0.000007  loss: 1.9636  time: 3.2696  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [2750/4427]  eta: 1:31:25  lr: 0.000007  loss: 1.3914  time: 3.2852  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [2800/4427]  eta: 1:28:41  lr: 0.000007  loss: 1.9579  time: 3.2478  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [2850/4427]  eta: 1:25:57  lr: 0.000007  loss: 1.8693  time: 3.2398  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [2900/4427]  eta: 1:23:14  lr: 0.000007  loss: 1.8553  time: 3.2506  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [2950/4427]  eta: 1:20:29  lr: 0.000007  loss: 1.7256  time: 3.2356  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [3000/4427]  eta: 1:17:46  lr: 0.000007  loss: 1.8665  time: 3.2680  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [3050/4427]  eta: 1:15:02  lr: 0.000007  loss: 1.5828  time: 3.2379  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [3100/4427]  eta: 1:12:18  lr: 0.000007  loss: 1.8149  time: 3.2456  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [3150/4427]  eta: 1:09:34  lr: 0.000007  loss: 1.9333  time: 3.2651  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [3200/4427]  eta: 1:06:50  lr: 0.000007  loss: 1.6706  time: 3.2408  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [3250/4427]  eta: 1:04:07  lr: 0.000007  loss: 1.7282  time: 3.2584  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [3300/4427]  eta: 1:01:23  lr: 0.000007  loss: 1.4530  time: 3.2467  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [3350/4427]  eta: 0:58:39  lr: 0.000007  loss: 1.7562  time: 3.2602  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [3400/4427]  eta: 0:55:56  lr: 0.000007  loss: 1.6455  time: 3.2678  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [3450/4427]  eta: 0:53:12  lr: 0.000007  loss: 1.7801  time: 3.2786  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [3500/4427]  eta: 0:50:29  lr: 0.000007  loss: 1.6027  time: 3.2635  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [3550/4427]  eta: 0:47:46  lr: 0.000007  loss: 1.9445  time: 3.2922  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [3600/4427]  eta: 0:45:02  lr: 0.000007  loss: 1.5116  time: 3.2631  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [3650/4427]  eta: 0:42:19  lr: 0.000007  loss: 1.6641  time: 3.2691  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [3700/4427]  eta: 0:39:35  lr: 0.000007  loss: 1.5967  time: 3.2592  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [3750/4427]  eta: 0:36:52  lr: 0.000007  loss: 1.8449  time: 3.2515  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [3800/4427]  eta: 0:34:08  lr: 0.000007  loss: 1.5330  time: 3.2271  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [3850/4427]  eta: 0:31:25  lr: 0.000007  loss: 1.4559  time: 3.2816  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [3900/4427]  eta: 0:28:41  lr: 0.000007  loss: 1.5883  time: 3.2603  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [3950/4427]  eta: 0:25:58  lr: 0.000007  loss: 1.7136  time: 3.2764  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [4000/4427]  eta: 0:23:15  lr: 0.000007  loss: 1.8187  time: 3.2822  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [4050/4427]  eta: 0:20:31  lr: 0.000007  loss: 1.7317  time: 3.2888  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [4100/4427]  eta: 0:17:48  lr: 0.000007  loss: 1.5129  time: 3.2984  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [4150/4427]  eta: 0:15:05  lr: 0.000007  loss: 2.0817  time: 3.2699  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [4200/4427]  eta: 0:12:21  lr: 0.000007  loss: 1.6207  time: 3.2625  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [4250/4427]  eta: 0:09:38  lr: 0.000007  loss: 1.7692  time: 3.2621  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [4300/4427]  eta: 0:06:55  lr: 0.000007  loss: 1.6914  time: 3.2758  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [4350/4427]  eta: 0:04:11  lr: 0.000007  loss: 1.7566  time: 3.2629  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [4400/4427]  eta: 0:01:28  lr: 0.000007  loss: 1.7521  time: 3.2442  data: 0.0000  max mem: 34614
+Train: data epoch: [2]  [4426/4427]  eta: 0:00:03  lr: 0.000007  loss: 1.6995  time: 3.2947  data: 0.0000  max mem: 34614
+Train: data epoch: [2] Total time: 4:01:07 (3.2681 s / it)
+2023-04-18 05:58:39,840 [INFO] Averaged stats: lr: 0.0000  loss: 1.7133
+2023-04-18 05:58:39,842 [INFO] Evaluating on val.
+/home/yiren/anaconda3/envs/lavis/lib/python3.8/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+Evaluation  [ 0/79]  eta: 0:03:36    time: 2.7368  data: 0.4872  max mem: 34614
+Evaluation  [10/79]  eta: 0:02:35    time: 2.2605  data: 0.0450  max mem: 34614
+Evaluation  [20/79]  eta: 0:02:11    time: 2.2098  data: 0.0008  max mem: 34614
+Evaluation  [30/79]  eta: 0:01:49    time: 2.2253  data: 0.0008  max mem: 34614
+Evaluation  [40/79]  eta: 0:01:29    time: 2.3756  data: 0.0008  max mem: 34614
+Evaluation  [50/79]  eta: 0:01:07    time: 2.4907  data: 0.0008  max mem: 34614
+Evaluation  [60/79]  eta: 0:00:44    time: 2.4166  data: 0.0008  max mem: 34614
+Evaluation  [70/79]  eta: 0:00:20    time: 2.3145  data: 0.0008  max mem: 34614
+Evaluation  [78/79]  eta: 0:00:02    time: 2.1724  data: 0.0096  max mem: 34614
+Evaluation Total time: 0:03:01 (2.3016 s / it)
+2023-04-18 06:01:43,182 [WARNING] rank 0 starts merging results.
+result file saved to /home/yiren/LAVIS/lavis/output/BLIP2/Caption_coco/20230417174/result/val_epoch2.json
+Using downloaded and verified file: /home/yiren/lavis_datasets/coco_gt/coco_karpathy_val_gt.json
+loading annotations into memory...
+Done (t=0.02s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.15s)
+creating index...
+index created!
+tokenization...
+PTBTokenizer tokenized 307821 tokens at 1620272.47 tokens per second.
+PTBTokenizer tokenized 53383 tokens at 507862.24 tokens per second.
+setting up scorers...
+computing Bleu score...
+{'testlen': 48253, 'reflen': 47846, 'guess': [48253, 43253, 38253, 33253], 'correct': [39753, 24059, 12802, 6432]}
+ratio: 1.008506458220102
+Bleu_1: 0.824
+Bleu_2: 0.677
+Bleu_3: 0.535
+Bleu_4: 0.415
+computing METEOR score...
+METEOR: 0.308
+computing Rouge score...
+ROUGE_L: 0.609
+computing CIDEr score...
+CIDEr: 1.381
+computing SPICE score...
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.nustaq.serialization.FSTClazzInfo (file:/home/yiren/anaconda3/envs/lavis/lib/python3.8/site-packages/pycocoevalcap/spice/lib/fst-2.47.jar) to field java.lang.String.value
+WARNING: Please consider reporting this to the maintainers of org.nustaq.serialization.FSTClazzInfo
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+Parsing reference captions
+Parsing test captions
+Initiating Stanford parsing pipeline
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator tokenize
+[main] INFO edu.stanford.nlp.pipeline.TokenizerAnnotator - TokenizerAnnotator: No tokenizer type provided. Defaulting to PTBTokenizer.
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator ssplit
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator parse
+[main] INFO edu.stanford.nlp.parser.common.ParserGrammar - Loading parser from serialized file edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz ...
+done [0.3 sec].
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator lemma
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator ner
+Loading classifier from edu/stanford/nlp/models/ner/english.all.3class.distsim.crf.ser.gz ... done [0.7 sec].
+Loading classifier from edu/stanford/nlp/models/ner/english.muc.7class.distsim.crf.ser.gz ... done [0.5 sec].
+Loading classifier from edu/stanford/nlp/models/ner/english.conll.4class.distsim.crf.ser.gz ... done [0.5 sec].
+Threads( StanfordCoreNLP ) [5.944 seconds]
+Warning: Nashorn engine is planned to be removed from a future JDK release
+SPICE evaluation took: 12.86 s
+SPICE: 0.241
+Bleu_1: 0.824
+Bleu_2: 0.677
+Bleu_3: 0.535
+Bleu_4: 0.415
+METEOR: 0.308
+ROUGE_L: 0.609
+CIDEr: 1.381
+SPICE: 0.241
+2023-04-18 06:02:11,688 [INFO] Start training
+2023-04-18 06:02:11,719 [INFO] Start training epoch 3, 4427 iters per inner epoch.
+Train: data epoch: [3]  [   0/4427]  eta: 7:15:53  lr: 0.000003  loss: 1.7161  time: 5.9077  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [  50/4427]  eta: 4:01:56  lr: 0.000003  loss: 1.7028  time: 3.2820  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [ 100/4427]  eta: 3:57:40  lr: 0.000003  loss: 1.5654  time: 3.2742  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [ 150/4427]  eta: 3:54:20  lr: 0.000003  loss: 1.7156  time: 3.2953  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [ 200/4427]  eta: 3:51:47  lr: 0.000003  loss: 1.5747  time: 3.2973  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [ 250/4427]  eta: 3:48:57  lr: 0.000003  loss: 1.5109  time: 3.2708  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [ 300/4427]  eta: 3:46:09  lr: 0.000003  loss: 1.5588  time: 3.3123  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [ 350/4427]  eta: 3:43:08  lr: 0.000003  loss: 1.3940  time: 3.2696  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [ 400/4427]  eta: 3:40:23  lr: 0.000003  loss: 1.5251  time: 3.2957  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [ 450/4427]  eta: 3:37:39  lr: 0.000003  loss: 1.4214  time: 3.2714  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [ 500/4427]  eta: 3:34:47  lr: 0.000003  loss: 1.6610  time: 3.2582  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [ 550/4427]  eta: 3:32:04  lr: 0.000003  loss: 1.5224  time: 3.2997  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [ 600/4427]  eta: 3:29:17  lr: 0.000003  loss: 1.5033  time: 3.2718  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [ 650/4427]  eta: 3:26:29  lr: 0.000003  loss: 1.3908  time: 3.2559  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [ 700/4427]  eta: 3:23:39  lr: 0.000003  loss: 1.9018  time: 3.2599  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [ 750/4427]  eta: 3:20:54  lr: 0.000003  loss: 1.7114  time: 3.2681  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [ 800/4427]  eta: 3:18:09  lr: 0.000003  loss: 1.8359  time: 3.2830  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [ 850/4427]  eta: 3:15:28  lr: 0.000003  loss: 1.8679  time: 3.3005  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [ 900/4427]  eta: 3:12:44  lr: 0.000003  loss: 1.7405  time: 3.2825  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [ 950/4427]  eta: 3:10:00  lr: 0.000003  loss: 1.5087  time: 3.2733  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [1000/4427]  eta: 3:07:14  lr: 0.000003  loss: 1.2781  time: 3.2802  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [1050/4427]  eta: 3:04:30  lr: 0.000003  loss: 1.9667  time: 3.2603  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [1100/4427]  eta: 3:01:48  lr: 0.000003  loss: 1.7782  time: 3.3071  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [1150/4427]  eta: 2:59:01  lr: 0.000003  loss: 1.9600  time: 3.2627  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [1200/4427]  eta: 2:56:18  lr: 0.000003  loss: 1.5887  time: 3.2642  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [1250/4427]  eta: 2:53:38  lr: 0.000003  loss: 1.6315  time: 3.3185  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [1300/4427]  eta: 2:50:54  lr: 0.000003  loss: 1.5979  time: 3.2610  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [1350/4427]  eta: 2:48:07  lr: 0.000003  loss: 1.6164  time: 3.2539  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [1400/4427]  eta: 2:45:19  lr: 0.000003  loss: 1.4878  time: 3.2558  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [1450/4427]  eta: 2:42:35  lr: 0.000003  loss: 1.4973  time: 3.2822  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [1500/4427]  eta: 2:39:52  lr: 0.000003  loss: 1.5384  time: 3.2943  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [1550/4427]  eta: 2:37:09  lr: 0.000003  loss: 1.5145  time: 3.2868  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [1600/4427]  eta: 2:34:26  lr: 0.000003  loss: 1.7895  time: 3.2858  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [1650/4427]  eta: 2:31:44  lr: 0.000003  loss: 1.3716  time: 3.3071  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [1700/4427]  eta: 2:29:00  lr: 0.000003  loss: 1.4543  time: 3.2882  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [1750/4427]  eta: 2:26:16  lr: 0.000003  loss: 1.6470  time: 3.2896  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [1800/4427]  eta: 2:23:32  lr: 0.000003  loss: 1.4422  time: 3.3033  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [1850/4427]  eta: 2:20:48  lr: 0.000003  loss: 1.5698  time: 3.2823  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [1900/4427]  eta: 2:18:05  lr: 0.000003  loss: 1.4919  time: 3.2921  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [1950/4427]  eta: 2:15:21  lr: 0.000003  loss: 1.5011  time: 3.2907  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [2000/4427]  eta: 2:12:38  lr: 0.000003  loss: 1.8491  time: 3.2888  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [2050/4427]  eta: 2:09:55  lr: 0.000003  loss: 1.8618  time: 3.2965  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [2100/4427]  eta: 2:07:10  lr: 0.000003  loss: 1.6521  time: 3.2588  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [2150/4427]  eta: 2:04:26  lr: 0.000003  loss: 1.8230  time: 3.3152  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [2200/4427]  eta: 2:01:41  lr: 0.000003  loss: 1.5184  time: 3.2349  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [2250/4427]  eta: 1:58:55  lr: 0.000003  loss: 1.5991  time: 3.2497  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [2300/4427]  eta: 1:56:10  lr: 0.000003  loss: 1.5571  time: 3.2516  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [2350/4427]  eta: 1:53:26  lr: 0.000003  loss: 1.3700  time: 3.2926  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [2400/4427]  eta: 1:50:43  lr: 0.000003  loss: 1.9732  time: 3.2875  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [2450/4427]  eta: 1:47:58  lr: 0.000003  loss: 1.5864  time: 3.2682  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [2500/4427]  eta: 1:45:15  lr: 0.000003  loss: 1.7137  time: 3.2584  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [2550/4427]  eta: 1:42:30  lr: 0.000003  loss: 1.6491  time: 3.2663  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [2600/4427]  eta: 1:39:47  lr: 0.000003  loss: 1.7185  time: 3.2924  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [2650/4427]  eta: 1:37:03  lr: 0.000003  loss: 1.5134  time: 3.2589  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [2700/4427]  eta: 1:34:19  lr: 0.000003  loss: 2.0716  time: 3.2791  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [2750/4427]  eta: 1:31:35  lr: 0.000003  loss: 1.5519  time: 3.2803  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [2800/4427]  eta: 1:28:53  lr: 0.000003  loss: 1.7616  time: 3.3169  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [2850/4427]  eta: 1:26:09  lr: 0.000003  loss: 1.8713  time: 3.2833  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [2900/4427]  eta: 1:23:25  lr: 0.000003  loss: 1.6910  time: 3.2692  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [2950/4427]  eta: 1:20:41  lr: 0.000003  loss: 1.6761  time: 3.2694  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [3000/4427]  eta: 1:17:57  lr: 0.000003  loss: 1.5536  time: 3.2747  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [3050/4427]  eta: 1:15:12  lr: 0.000003  loss: 1.6917  time: 3.2454  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [3100/4427]  eta: 1:12:28  lr: 0.000003  loss: 2.0230  time: 3.2726  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [3150/4427]  eta: 1:09:45  lr: 0.000003  loss: 1.6960  time: 3.2987  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [3200/4427]  eta: 1:07:01  lr: 0.000003  loss: 1.5230  time: 3.2720  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [3250/4427]  eta: 1:04:17  lr: 0.000003  loss: 1.6783  time: 3.2698  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [3300/4427]  eta: 1:01:33  lr: 0.000003  loss: 1.5704  time: 3.2794  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [3350/4427]  eta: 0:58:49  lr: 0.000003  loss: 1.4916  time: 3.2871  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [3400/4427]  eta: 0:56:05  lr: 0.000003  loss: 1.6868  time: 3.2817  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [3450/4427]  eta: 0:53:22  lr: 0.000003  loss: 1.6643  time: 3.3237  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [3500/4427]  eta: 0:50:38  lr: 0.000003  loss: 1.6654  time: 3.2776  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [3550/4427]  eta: 0:47:54  lr: 0.000003  loss: 1.4973  time: 3.2796  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [3600/4427]  eta: 0:45:10  lr: 0.000003  loss: 1.2622  time: 3.2750  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [3650/4427]  eta: 0:42:26  lr: 0.000003  loss: 1.8249  time: 3.2567  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [3700/4427]  eta: 0:39:42  lr: 0.000003  loss: 1.5043  time: 3.2527  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [3750/4427]  eta: 0:36:58  lr: 0.000003  loss: 1.9473  time: 3.2761  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [3800/4427]  eta: 0:34:14  lr: 0.000003  loss: 1.5965  time: 3.2574  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [3850/4427]  eta: 0:31:30  lr: 0.000003  loss: 1.5799  time: 3.2572  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [3900/4427]  eta: 0:28:46  lr: 0.000003  loss: 1.4548  time: 3.2567  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [3950/4427]  eta: 0:26:02  lr: 0.000003  loss: 1.6157  time: 3.2564  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [4000/4427]  eta: 0:23:18  lr: 0.000003  loss: 1.5680  time: 3.2681  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [4050/4427]  eta: 0:20:34  lr: 0.000003  loss: 1.6777  time: 3.2605  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [4100/4427]  eta: 0:17:51  lr: 0.000003  loss: 1.9394  time: 3.2815  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [4150/4427]  eta: 0:15:07  lr: 0.000003  loss: 1.3653  time: 3.2743  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [4200/4427]  eta: 0:12:23  lr: 0.000003  loss: 1.5289  time: 3.2446  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [4250/4427]  eta: 0:09:39  lr: 0.000003  loss: 1.8360  time: 3.2592  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [4300/4427]  eta: 0:06:55  lr: 0.000003  loss: 1.5550  time: 3.2658  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [4350/4427]  eta: 0:04:12  lr: 0.000003  loss: 1.6957  time: 3.2901  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [4400/4427]  eta: 0:01:28  lr: 0.000003  loss: 1.7343  time: 3.2894  data: 0.0000  max mem: 34614
+Train: data epoch: [3]  [4426/4427]  eta: 0:00:03  lr: 0.000003  loss: 1.6805  time: 3.2818  data: 0.0000  max mem: 34614
+Train: data epoch: [3] Total time: 4:01:40 (3.2754 s / it)
+2023-04-18 10:03:51,833 [INFO] Averaged stats: lr: 0.0000  loss: 1.6549
+2023-04-18 10:03:51,835 [INFO] Evaluating on val.
+/home/yiren/anaconda3/envs/lavis/lib/python3.8/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+Evaluation  [ 0/79]  eta: 0:03:48    time: 2.8880  data: 0.4784  max mem: 34614
+Evaluation  [10/79]  eta: 0:02:36    time: 2.2691  data: 0.0442  max mem: 34614
+Evaluation  [20/79]  eta: 0:02:11    time: 2.1870  data: 0.0008  max mem: 34614
+Evaluation  [30/79]  eta: 0:01:49    time: 2.2218  data: 0.0008  max mem: 34614
+Evaluation  [40/79]  eta: 0:01:27    time: 2.2788  data: 0.0008  max mem: 34614
+Evaluation  [50/79]  eta: 0:01:05    time: 2.2672  data: 0.0008  max mem: 34614
+Evaluation  [60/79]  eta: 0:00:42    time: 2.2837  data: 0.0008  max mem: 34614
+Evaluation  [70/79]  eta: 0:00:20    time: 2.3074  data: 0.0008  max mem: 34614
+Evaluation  [78/79]  eta: 0:00:02    time: 2.2142  data: 0.0103  max mem: 34614
+Evaluation Total time: 0:02:57 (2.2481 s / it)
+2023-04-18 10:06:57,208 [WARNING] rank 0 starts merging results.
+result file saved to /home/yiren/LAVIS/lavis/output/BLIP2/Caption_coco/20230417174/result/val_epoch3.json
+Using downloaded and verified file: /home/yiren/lavis_datasets/coco_gt/coco_karpathy_val_gt.json
+loading annotations into memory...
+Done (t=0.02s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.00s)
+creating index...
+index created!
+tokenization...
+PTBTokenizer tokenized 307821 tokens at 1621884.46 tokens per second.
+PTBTokenizer tokenized 53514 tokens at 496803.22 tokens per second.
+setting up scorers...
+computing Bleu score...
+{'testlen': 48360, 'reflen': 47923, 'guess': [48360, 43360, 38360, 33360], 'correct': [39968, 24234, 12912, 6511]}
+ratio: 1.009118794733197
+Bleu_1: 0.826
+Bleu_2: 0.680
+Bleu_3: 0.538
+Bleu_4: 0.417
+computing METEOR score...
+METEOR: 0.309
+computing Rouge score...
+ROUGE_L: 0.609
+computing CIDEr score...
+CIDEr: 1.393
+computing SPICE score...
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.nustaq.serialization.FSTClazzInfo (file:/home/yiren/anaconda3/envs/lavis/lib/python3.8/site-packages/pycocoevalcap/spice/lib/fst-2.47.jar) to field java.lang.String.value
+WARNING: Please consider reporting this to the maintainers of org.nustaq.serialization.FSTClazzInfo
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+Parsing reference captions
+Parsing test captions
+Initiating Stanford parsing pipeline
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator tokenize
+[main] INFO edu.stanford.nlp.pipeline.TokenizerAnnotator - TokenizerAnnotator: No tokenizer type provided. Defaulting to PTBTokenizer.
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator ssplit
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator parse
+[main] INFO edu.stanford.nlp.parser.common.ParserGrammar - Loading parser from serialized file edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz ...
+done [0.3 sec].
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator lemma
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator ner
+Loading classifier from edu/stanford/nlp/models/ner/english.all.3class.distsim.crf.ser.gz ... done [0.8 sec].
+Loading classifier from edu/stanford/nlp/models/ner/english.muc.7class.distsim.crf.ser.gz ... done [0.3 sec].
+Loading classifier from edu/stanford/nlp/models/ner/english.conll.4class.distsim.crf.ser.gz ... done [0.6 sec].
+Threads( StanfordCoreNLP ) [5.8 seconds]
+Warning: Nashorn engine is planned to be removed from a future JDK release
+SPICE evaluation took: 11.81 s
+SPICE: 0.244
+Bleu_1: 0.826
+Bleu_2: 0.680
+Bleu_3: 0.538
+Bleu_4: 0.417
+METEOR: 0.309
+ROUGE_L: 0.609
+CIDEr: 1.393
+SPICE: 0.244
+2023-04-18 10:07:24,318 [INFO] Saving checkpoint at epoch 3 to /home/yiren/LAVIS/lavis/output/BLIP2/Caption_coco/20230417174/checkpoint_best.pth.
+2023-04-18 10:07:42,363 [INFO] Start training
+2023-04-18 10:07:42,392 [INFO] Start training epoch 4, 4427 iters per inner epoch.
+Train: data epoch: [4]  [   0/4427]  eta: 7:13:55  lr: 0.000001  loss: 1.9957  time: 5.8812  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [  50/4427]  eta: 4:00:54  lr: 0.000001  loss: 1.7722  time: 3.2442  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [ 100/4427]  eta: 3:56:56  lr: 0.000001  loss: 1.5821  time: 3.2807  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [ 150/4427]  eta: 3:53:51  lr: 0.000001  loss: 1.8766  time: 3.2750  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [ 200/4427]  eta: 3:51:22  lr: 0.000001  loss: 1.4073  time: 3.2959  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [ 250/4427]  eta: 3:48:26  lr: 0.000001  loss: 1.1865  time: 3.2516  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [ 300/4427]  eta: 3:45:45  lr: 0.000001  loss: 1.6094  time: 3.2963  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [ 350/4427]  eta: 3:43:05  lr: 0.000001  loss: 1.4283  time: 3.2872  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [ 400/4427]  eta: 3:40:11  lr: 0.000001  loss: 1.5811  time: 3.2552  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [ 450/4427]  eta: 3:37:16  lr: 0.000001  loss: 1.3955  time: 3.2664  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [ 500/4427]  eta: 3:34:26  lr: 0.000001  loss: 1.5078  time: 3.2350  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [ 550/4427]  eta: 3:31:39  lr: 0.000001  loss: 1.8206  time: 3.2664  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [ 600/4427]  eta: 3:28:51  lr: 0.000001  loss: 1.8453  time: 3.2642  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [ 650/4427]  eta: 3:26:03  lr: 0.000001  loss: 1.5467  time: 3.2612  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [ 700/4427]  eta: 3:23:21  lr: 0.000001  loss: 1.8022  time: 3.2948  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [ 750/4427]  eta: 3:20:37  lr: 0.000001  loss: 1.7362  time: 3.2661  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [ 800/4427]  eta: 3:17:52  lr: 0.000001  loss: 1.3085  time: 3.2547  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [ 850/4427]  eta: 3:15:07  lr: 0.000001  loss: 1.3277  time: 3.2834  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [ 900/4427]  eta: 3:12:22  lr: 0.000001  loss: 1.6214  time: 3.2690  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [ 950/4427]  eta: 3:09:37  lr: 0.000001  loss: 1.5337  time: 3.2626  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [1000/4427]  eta: 3:06:52  lr: 0.000001  loss: 1.6069  time: 3.2777  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [1050/4427]  eta: 3:04:06  lr: 0.000001  loss: 1.4894  time: 3.2474  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [1100/4427]  eta: 3:01:20  lr: 0.000001  loss: 1.5189  time: 3.2644  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [1150/4427]  eta: 2:58:35  lr: 0.000001  loss: 1.8910  time: 3.2680  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [1200/4427]  eta: 2:55:52  lr: 0.000001  loss: 1.5956  time: 3.2923  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [1250/4427]  eta: 2:53:07  lr: 0.000001  loss: 1.9316  time: 3.2631  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [1300/4427]  eta: 2:50:22  lr: 0.000001  loss: 1.7550  time: 3.2637  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [1350/4427]  eta: 2:47:38  lr: 0.000001  loss: 1.8100  time: 3.2559  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [1400/4427]  eta: 2:44:53  lr: 0.000001  loss: 1.6001  time: 3.2409  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [1450/4427]  eta: 2:42:08  lr: 0.000001  loss: 1.7116  time: 3.2561  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [1500/4427]  eta: 2:39:23  lr: 0.000001  loss: 1.5170  time: 3.2573  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [1550/4427]  eta: 2:36:39  lr: 0.000001  loss: 1.8928  time: 3.2524  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [1600/4427]  eta: 2:33:57  lr: 0.000001  loss: 1.3233  time: 3.3054  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [1650/4427]  eta: 2:31:16  lr: 0.000001  loss: 1.5856  time: 3.3078  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [1700/4427]  eta: 2:28:33  lr: 0.000001  loss: 1.6590  time: 3.2705  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [1750/4427]  eta: 2:25:50  lr: 0.000001  loss: 1.4905  time: 3.2941  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [1800/4427]  eta: 2:23:07  lr: 0.000001  loss: 1.6217  time: 3.2790  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [1850/4427]  eta: 2:20:23  lr: 0.000001  loss: 1.7384  time: 3.2627  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [1900/4427]  eta: 2:17:39  lr: 0.000001  loss: 1.4482  time: 3.2411  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [1950/4427]  eta: 2:14:55  lr: 0.000001  loss: 1.3969  time: 3.2508  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [2000/4427]  eta: 2:12:12  lr: 0.000001  loss: 1.4778  time: 3.2616  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [2050/4427]  eta: 2:09:28  lr: 0.000001  loss: 1.9204  time: 3.2751  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [2100/4427]  eta: 2:06:45  lr: 0.000001  loss: 1.5091  time: 3.2866  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [2150/4427]  eta: 2:04:03  lr: 0.000001  loss: 1.6311  time: 3.2959  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [2200/4427]  eta: 2:01:19  lr: 0.000001  loss: 1.4326  time: 3.2442  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [2250/4427]  eta: 1:58:36  lr: 0.000001  loss: 1.2153  time: 3.2541  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [2300/4427]  eta: 1:55:52  lr: 0.000001  loss: 1.2356  time: 3.2658  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [2350/4427]  eta: 1:53:08  lr: 0.000001  loss: 1.7120  time: 3.2510  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [2400/4427]  eta: 1:50:23  lr: 0.000001  loss: 1.8574  time: 3.2398  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [2450/4427]  eta: 1:47:39  lr: 0.000001  loss: 1.6392  time: 3.2554  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [2500/4427]  eta: 1:44:55  lr: 0.000001  loss: 1.8759  time: 3.2460  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [2550/4427]  eta: 1:42:12  lr: 0.000001  loss: 1.4590  time: 3.2844  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [2600/4427]  eta: 1:39:29  lr: 0.000001  loss: 1.5826  time: 3.2731  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [2650/4427]  eta: 1:36:46  lr: 0.000001  loss: 1.4692  time: 3.2564  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [2700/4427]  eta: 1:34:02  lr: 0.000001  loss: 1.5552  time: 3.2605  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [2750/4427]  eta: 1:31:19  lr: 0.000001  loss: 1.8552  time: 3.2651  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [2800/4427]  eta: 1:28:35  lr: 0.000001  loss: 1.3768  time: 3.2772  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [2850/4427]  eta: 1:25:51  lr: 0.000001  loss: 1.5386  time: 3.2439  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [2900/4427]  eta: 1:23:08  lr: 0.000001  loss: 1.6398  time: 3.2622  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [2950/4427]  eta: 1:20:25  lr: 0.000001  loss: 1.2764  time: 3.2570  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [3000/4427]  eta: 1:17:41  lr: 0.000001  loss: 1.5080  time: 3.2719  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [3050/4427]  eta: 1:14:58  lr: 0.000001  loss: 1.8943  time: 3.2726  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [3100/4427]  eta: 1:12:15  lr: 0.000001  loss: 1.3451  time: 3.2723  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [3150/4427]  eta: 1:09:32  lr: 0.000001  loss: 1.6902  time: 3.2798  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [3200/4427]  eta: 1:06:48  lr: 0.000001  loss: 1.6069  time: 3.2639  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [3250/4427]  eta: 1:04:05  lr: 0.000001  loss: 2.0418  time: 3.2459  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [3300/4427]  eta: 1:01:21  lr: 0.000001  loss: 1.6650  time: 3.2341  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [3350/4427]  eta: 0:58:38  lr: 0.000001  loss: 1.5193  time: 3.2530  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [3400/4427]  eta: 0:55:54  lr: 0.000001  loss: 1.5131  time: 3.2436  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [3450/4427]  eta: 0:53:11  lr: 0.000001  loss: 1.5039  time: 3.2791  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [3500/4427]  eta: 0:50:27  lr: 0.000001  loss: 1.9116  time: 3.2571  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [3550/4427]  eta: 0:47:44  lr: 0.000001  loss: 1.7491  time: 3.2756  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [3600/4427]  eta: 0:45:01  lr: 0.000001  loss: 1.5527  time: 3.2673  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [3650/4427]  eta: 0:42:17  lr: 0.000001  loss: 1.8044  time: 3.2430  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [3700/4427]  eta: 0:39:34  lr: 0.000001  loss: 1.5358  time: 3.2533  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [3750/4427]  eta: 0:36:51  lr: 0.000001  loss: 1.5733  time: 3.2383  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [3800/4427]  eta: 0:34:07  lr: 0.000001  loss: 1.7469  time: 3.2838  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [3850/4427]  eta: 0:31:24  lr: 0.000001  loss: 1.3627  time: 3.2697  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [3900/4427]  eta: 0:28:41  lr: 0.000001  loss: 1.5269  time: 3.2611  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [3950/4427]  eta: 0:25:57  lr: 0.000001  loss: 1.6035  time: 3.2290  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [4000/4427]  eta: 0:23:14  lr: 0.000001  loss: 1.4142  time: 3.2615  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [4050/4427]  eta: 0:20:31  lr: 0.000001  loss: 1.4402  time: 3.2505  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [4100/4427]  eta: 0:17:47  lr: 0.000001  loss: 1.7836  time: 3.2706  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [4150/4427]  eta: 0:15:04  lr: 0.000001  loss: 2.0347  time: 3.2616  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [4200/4427]  eta: 0:12:21  lr: 0.000001  loss: 1.7041  time: 3.2729  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [4250/4427]  eta: 0:09:37  lr: 0.000001  loss: 1.2961  time: 3.2573  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [4300/4427]  eta: 0:06:54  lr: 0.000001  loss: 1.5783  time: 3.2734  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [4350/4427]  eta: 0:04:11  lr: 0.000001  loss: 1.5234  time: 3.2753  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [4400/4427]  eta: 0:01:28  lr: 0.000001  loss: 1.3508  time: 3.2668  data: 0.0000  max mem: 34614
+Train: data epoch: [4]  [4426/4427]  eta: 0:00:03  lr: 0.000001  loss: 2.0300  time: 3.2688  data: 0.0000  max mem: 34614
+Train: data epoch: [4] Total time: 4:00:55 (3.2654 s / it)
+2023-04-18 14:08:38,309 [INFO] Averaged stats: lr: 0.0000  loss: 1.6073
+2023-04-18 14:08:38,311 [INFO] Evaluating on val.
+/home/yiren/anaconda3/envs/lavis/lib/python3.8/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+Evaluation  [ 0/79]  eta: 0:03:26    time: 2.6090  data: 0.4924  max mem: 34614
+Evaluation  [10/79]  eta: 0:02:35    time: 2.2563  data: 0.0455  max mem: 34614
+Evaluation  [20/79]  eta: 0:02:12    time: 2.2253  data: 0.0008  max mem: 34614
+Evaluation  [30/79]  eta: 0:01:50    time: 2.2538  data: 0.0008  max mem: 34614
+Evaluation  [40/79]  eta: 0:01:27    time: 2.2652  data: 0.0008  max mem: 34614
+Evaluation  [50/79]  eta: 0:01:05    time: 2.2827  data: 0.0008  max mem: 34614
+Evaluation  [60/79]  eta: 0:00:43    time: 2.3135  data: 0.0008  max mem: 34614
+Evaluation  [70/79]  eta: 0:00:20    time: 2.3852  data: 0.0008  max mem: 34614
+Evaluation  [78/79]  eta: 0:00:02    time: 2.3507  data: 0.0098  max mem: 34614
+Evaluation Total time: 0:03:00 (2.2891 s / it)
+2023-04-18 14:11:42,090 [WARNING] rank 0 starts merging results.
+result file saved to /home/yiren/LAVIS/lavis/output/BLIP2/Caption_coco/20230417174/result/val_epoch4.json
+Using downloaded and verified file: /home/yiren/lavis_datasets/coco_gt/coco_karpathy_val_gt.json
+loading annotations into memory...
+Done (t=0.02s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+tokenization...
+PTBTokenizer tokenized 307821 tokens at 1672716.63 tokens per second.
+PTBTokenizer tokenized 53683 tokens at 512078.25 tokens per second.
+setting up scorers...
+computing Bleu score...
+{'testlen': 48545, 'reflen': 48128, 'guess': [48545, 43545, 38545, 33545], 'correct': [39981, 24202, 12904, 6480]}
+ratio: 1.0086643949467877
+Bleu_1: 0.824
+Bleu_2: 0.677
+Bleu_3: 0.535
+Bleu_4: 0.415
+computing METEOR score...
+METEOR: 0.309
+computing Rouge score...
+ROUGE_L: 0.607
+computing CIDEr score...
+CIDEr: 1.389
+computing SPICE score...
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.nustaq.serialization.FSTClazzInfo (file:/home/yiren/anaconda3/envs/lavis/lib/python3.8/site-packages/pycocoevalcap/spice/lib/fst-2.47.jar) to field java.lang.String.value
+WARNING: Please consider reporting this to the maintainers of org.nustaq.serialization.FSTClazzInfo
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+Parsing reference captions
+Parsing test captions
+Initiating Stanford parsing pipeline
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator tokenize
+[main] INFO edu.stanford.nlp.pipeline.TokenizerAnnotator - TokenizerAnnotator: No tokenizer type provided. Defaulting to PTBTokenizer.
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator ssplit
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator parse
+[main] INFO edu.stanford.nlp.parser.common.ParserGrammar - Loading parser from serialized file edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz ...
+done [0.3 sec].
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator lemma
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator ner
+Loading classifier from edu/stanford/nlp/models/ner/english.all.3class.distsim.crf.ser.gz ... done [0.8 sec].
+Loading classifier from edu/stanford/nlp/models/ner/english.muc.7class.distsim.crf.ser.gz ... done [0.4 sec].
+Loading classifier from edu/stanford/nlp/models/ner/english.conll.4class.distsim.crf.ser.gz ... done [0.4 sec].
+Threads( StanfordCoreNLP ) [4.971 seconds]
+Warning: Nashorn engine is planned to be removed from a future JDK release
+SPICE evaluation took: 11.22 s
+SPICE: 0.243
+Bleu_1: 0.824
+Bleu_2: 0.677
+Bleu_3: 0.535
+Bleu_4: 0.415
+METEOR: 0.309
+ROUGE_L: 0.607
+CIDEr: 1.389
+SPICE: 0.243
+2023-04-18 14:12:08,376 [INFO] Loading checkpoint from /home/yiren/LAVIS/lavis/output/BLIP2/Caption_coco/20230417174/checkpoint_best.pth.
+2023-04-18 14:12:14,501 [WARNING]
+                Key mismatch when loading checkpoint. This is expected if only part of the model is saved.
+                Trying to load the model with strict=False.
+
+2023-04-18 14:12:15,138 [WARNING]
+                Key mismatch when loading checkpoint. This is expected if only part of the model is saved.
+                Trying to load the model with strict=False.
+
+2023-04-18 14:12:15,153 [WARNING]
+                Key mismatch when loading checkpoint. This is expected if only part of the model is saved.
+                Trying to load the model with strict=False.
+
+2023-04-18 14:12:15,853 [WARNING]
+                Key mismatch when loading checkpoint. This is expected if only part of the model is saved.
+                Trying to load the model with strict=False.
+
+2023-04-18 14:12:16,095 [WARNING]
+                Key mismatch when loading checkpoint. This is expected if only part of the model is saved.
+                Trying to load the model with strict=False.
+
+2023-04-18 14:12:16,117 [WARNING]
+                Key mismatch when loading checkpoint. This is expected if only part of the model is saved.
+                Trying to load the model with strict=False.
+
+/home/yiren/anaconda3/envs/lavis/lib/python3.8/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+2023-04-18 14:12:16,377 [WARNING]
+                Key mismatch when loading checkpoint. This is expected if only part of the model is saved.
+                Trying to load the model with strict=False.
+
+2023-04-18 14:12:16,586 [WARNING]
+                Key mismatch when loading checkpoint. This is expected if only part of the model is saved.
+                Trying to load the model with strict=False.
+
+Evaluation  [ 0/79]  eta: 0:03:52    time: 2.9408  data: 0.7142  max mem: 34614
+Evaluation  [10/79]  eta: 0:02:31    time: 2.1923  data: 0.0657  max mem: 34614
+Evaluation  [20/79]  eta: 0:02:12    time: 2.2056  data: 0.0008  max mem: 34614
+Evaluation  [30/79]  eta: 0:01:50    time: 2.2932  data: 0.0008  max mem: 34614
+Evaluation  [40/79]  eta: 0:01:27    time: 2.2491  data: 0.0008  max mem: 34614
+Evaluation  [50/79]  eta: 0:01:05    time: 2.2807  data: 0.0008  max mem: 34614
+Evaluation  [60/79]  eta: 0:00:43    time: 2.3288  data: 0.0008  max mem: 34614
+Evaluation  [70/79]  eta: 0:00:20    time: 2.2631  data: 0.0008  max mem: 34614
+Evaluation  [78/79]  eta: 0:00:02    time: 2.1073  data: 0.0178  max mem: 34614
+Evaluation Total time: 0:02:56 (2.2359 s / it)
+2023-04-18 14:15:19,032 [WARNING] rank 0 starts merging results.
+result file saved to /home/yiren/LAVIS/lavis/output/BLIP2/Caption_coco/20230417174/result/test_epochbest.json
+Using downloaded and verified file: /home/yiren/lavis_datasets/coco_gt/coco_karpathy_test_gt.json
+loading annotations into memory...
+Done (t=0.02s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+tokenization...
+PTBTokenizer tokenized 307085 tokens at 1623730.27 tokens per second.
+PTBTokenizer tokenized 53194 tokens at 481910.50 tokens per second.
+setting up scorers...
+computing Bleu score...
+{'testlen': 48040, 'reflen': 47496, 'guess': [48040, 43040, 38040, 33040], 'correct': [39544, 23937, 12857, 6497]}
+ratio: 1.0114535960922812
+Bleu_1: 0.823
+Bleu_2: 0.677
+Bleu_3: 0.537
+Bleu_4: 0.418
+computing METEOR score...
+METEOR: 0.309
+computing Rouge score...
+ROUGE_L: 0.609
+computing CIDEr score...
+CIDEr: 1.404
+computing SPICE score...
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.nustaq.serialization.FSTClazzInfo (file:/home/yiren/anaconda3/envs/lavis/lib/python3.8/site-packages/pycocoevalcap/spice/lib/fst-2.47.jar) to field java.lang.String.value
+WARNING: Please consider reporting this to the maintainers of org.nustaq.serialization.FSTClazzInfo
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+Parsing reference captions
+Parsing test captions
+Initiating Stanford parsing pipeline
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator tokenize
+[main] INFO edu.stanford.nlp.pipeline.TokenizerAnnotator - TokenizerAnnotator: No tokenizer type provided. Defaulting to PTBTokenizer.
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator ssplit
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator parse
+[main] INFO edu.stanford.nlp.parser.common.ParserGrammar - Loading parser from serialized file edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz ...
+done [0.3 sec].
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator lemma
+[main] INFO edu.stanford.nlp.pipeline.StanfordCoreNLP - Adding annotator ner
+Loading classifier from edu/stanford/nlp/models/ner/english.all.3class.distsim.crf.ser.gz ... done [0.8 sec].
+Loading classifier from edu/stanford/nlp/models/ner/english.muc.7class.distsim.crf.ser.gz ... done [0.5 sec].
+Loading classifier from edu/stanford/nlp/models/ner/english.conll.4class.distsim.crf.ser.gz ... done [0.6 sec].
+Threads( StanfordCoreNLP ) [7.576 seconds]
+Warning: Nashorn engine is planned to be removed from a future JDK release
+SPICE evaluation took: 14.61 s
+SPICE: 0.244
+Bleu_1: 0.823
+Bleu_2: 0.677
+Bleu_3: 0.537
+Bleu_4: 0.418
+METEOR: 0.309
+ROUGE_L: 0.609
+CIDEr: 1.404
+SPICE: 0.244
+2023-04-18 14:15:49,759 [INFO] Training time 20:29:42
+(lavis) yiren@mms-large-2:~/LAVIS$

@@ -1,0 +1,81 @@
+ # Copyright (c) 2022, salesforce.com, inc.
+ # All rights reserved.
+ # SPDX-License-Identifier: BSD-3-Clause
+ # For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+
+model:
+  arch: blip2_pformer
+  model_type: pretrain_pformer
+  # TODO: support stage 1 pretraining from scratch (load_pretrained=False does not have effect as of now)
+  load_pretrained: True
+  pretrained: "/home/yiren/LAVIS/lavis/output/BLIP-T/Pretrain_stage0/vq/12m-5/pformer.pth"
+  pretrained_stage0: "/home/yiren/LAVIS/lavis/output/BLIP-T/Pretrain_stage0/vq/12m-5/pformer.pth"
+  freeze_vit: True
+  loss_weight: 10.0
+
+
+datasets:
+  coco_caption:
+    vis_processor:
+        train:
+          name: "blip2_image_train"
+          image_size: 224
+    text_processor:
+        train:
+          name: "blip_caption"
+
+  vg_caption:
+    vis_processor:
+        train:
+          name: "blip2_image_train"
+          image_size: 224
+    text_processor:
+        train:
+          name: "blip_caption"
+
+  conceptual_caption_3m:
+    vis_processor:
+        train:
+          name: "blip2_image_train"
+          image_size: 224
+    text_processor:
+        train:
+          name: "blip_caption"
+
+  sbu_caption:
+    vis_processor:
+        train:
+          name: "blip2_image_train"
+          image_size: 224
+    text_processor:
+        train:
+          name: "blip_caption"
+
+run:
+  task: image_text_pretrain
+  # optimizer
+  lr_sched: "linear_warmup_cosine_lr"
+  init_lr: 1e-4
+  min_lr: 1e-5
+  warmup_lr: 1e-6
+
+  weight_decay: 0.05
+  max_epoch: 10
+  batch_size_train: 128
+  batch_size_eval: 64
+  num_workers: 4
+  warmup_steps: 5000
+
+  seed: 42
+  output_dir: "output/BLIP-T/Pretrain_stage1"
+
+  amp: True
+  resume_ckpt_path: null
+
+  evaluate: False
+  train_splits: ["train"]
+
+  device: "cuda"
+  world_size: 1
+  dist_url: "env://"
+  distributed: True

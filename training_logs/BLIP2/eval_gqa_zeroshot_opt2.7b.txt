@@ -1,0 +1,134 @@
+(lavis) yiren@mms-large-2:~/LAVIS$ bash run_scripts/blip2/eval/eval_gqa_zeroshot_opt2.7b.sh
+WARNING:__main__:
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed.
+*****************************************
+| distributed init (rank 5, world 8): env://
+| distributed init (rank 6, world 8): env://
+| distributed init (rank 7, world 8): env://
+| distributed init (rank 1, world 8): env://
+| distributed init (rank 3, world 8): env://
+| distributed init (rank 2, world 8): env://
+| distributed init (rank 0, world 8): env://
+| distributed init (rank 4, world 8): env://
+2023-04-17 15:24:00,837 [INFO]
+=====  Running Parameters    =====
+2023-04-17 15:24:00,838 [INFO] {
+    "_apply_lemmatizer": "True,",
+    "batch_size_eval": 64,
+    "batch_size_train": 16,
+    "device": "cuda",
+    "dist_backend": "nccl",
+    "dist_url": "env://",
+    "distributed": true,
+    "evaluate": true,
+    "gpu": 0,
+    "inference_method": "generate",
+    "length_penalty": "-1,",
+    "max_len": 10,
+    "min_len": 1,
+    "num_beams": 5,
+    "num_workers": 4,
+    "output_dir": "output/BLIP2/GQA",
+    "prompt": "Question: {} Short answer:",
+    "rank": 0,
+    "seed": 42,
+    "task": "gqa",
+    "test_splits": [
+        "val"
+    ],
+    "use_nucleus_sampling": "False,",
+    "world_size": 8
+}
+2023-04-17 15:24:00,838 [INFO]
+======  Dataset Attributes  ======
+2023-04-17 15:24:00,838 [INFO]
+======== gqa =======
+2023-04-17 15:24:00,839 [INFO] {
+    "build_info": {
+        "annotations": {
+            "test": {
+                "storage": [
+                    "gqa/annotations/test_balanced_questions.json"
+                ],
+                "url": [
+                    "https://storage.googleapis.com/sfr-vision-language-research/LAVIS/datasets/gqa/test_balanced_questions.json"
+                ]
+            },
+            "train": {
+                "storage": [
+                    "gqa/annotations/train_balanced_questions.json"
+                ],
+                "url": [
+                    "https://storage.googleapis.com/sfr-vision-language-research/LAVIS/datasets/gqa/train_balanced_questions.json"
+                ]
+            },
+            "val": {
+                "storage": [
+                    "gqa/annotations/testdev_balanced_questions.json"
+                ],
+                "url": [
+                    "https://storage.googleapis.com/sfr-vision-language-research/LAVIS/datasets/gqa/testdev_balanced_questions.json"
+                ]
+            }
+        },
+        "images": {
+            "storage": "gqa/images/"
+        }
+    },
+    "data_type": "images",
+    "text_processor": {
+        "eval": {
+            "name": "blip_question"
+        }
+    },
+    "type": "balanced_testdev",
+    "vis_processor": {
+        "eval": {
+            "image_size": 224,
+            "name": "blip_image_eval"
+        }
+    }
+}
+2023-04-17 15:24:00,839 [INFO]
+======  Model Attributes  ======
+2023-04-17 15:24:00,839 [INFO] {
+    "arch": "blip2_opt",
+    "drop_path_rate": 0,
+    "finetuned": "",
+    "freeze_vit": true,
+    "image_size": 224,
+    "load_finetuned": false,
+    "load_pretrained": true,
+    "model_type": "pretrain_opt2.7b",
+    "num_query_token": 32,
+    "opt_model": "facebook/opt-2.7b",
+    "pretrained": "/home/yiren/LAVIS/lavis/output/BLIP2/Pretrain_stage2/20230416005/checkpoint_9.pth",
+    "prompt": "",
+    "use_grad_checkpoint": false,
+    "vit_precision": "fp16"
+}
+Using downloaded and verified file: /home/yiren/lavis_datasets/gqa/annotations/train_balanced_questions.json
+Using downloaded and verified file: /home/yiren/lavis_datasets/gqa/annotations/testdev_balanced_questions.json
+Using downloaded and verified file: /home/yiren/lavis_datasets/gqa/annotations/test_balanced_questions.json
+2023-04-17 15:24:00,842 [INFO] Building datasets...
+2023-04-17 15:24:42,976 [INFO] freeze vision encoder
+**********  Loading local pretrained model  **********
+**********  /home/yiren/LAVIS/lavis/output/BLIP2/Pretrain_stage2/20230416005/checkpoint_9.pth  **********
+2023-04-17 15:25:28,876 [INFO] load checkpoint from /home/yiren/LAVIS/lavis/output/BLIP2/Pretrain_stage2/20230416005/checkpoint_9.pth
+2023-04-17 15:25:28,878 [INFO] dataset_ratios not specified, datasets will be concatenated (map-style datasets) or chained (webdataset.DataPipeline).
+2023-04-17 15:25:28,878 [INFO] Loaded 943000 records for train split from the dataset.
+2023-04-17 15:25:28,878 [INFO] Loaded 12578 records for val split from the dataset.
+2023-04-17 15:25:28,878 [INFO] Loaded 95336 records for test split from the dataset.
+2023-04-17 15:25:28,878 [INFO] Empty train splits.
+2023-04-17 15:25:28,878 [INFO] Empty train splits.
+2023-04-17 15:25:28,878 [INFO] Empty train splits.
+Evaluation  [ 0/25]  eta: 0:07:22    time: 17.6928  data: 1.6135  max mem: 33031
+Evaluation  [10/25]  eta: 0:03:38    time: 14.5774  data: 0.1545  max mem: 34495
+Evaluation  [20/25]  eta: 0:01:12    time: 14.4181  data: 0.0085  max mem: 34495
+Evaluation  [24/25]  eta: 0:00:14    time: 14.1275  data: 0.0203  max mem: 34495
+Evaluation Total time: 0:05:57 (14.2859 s / it)
+2023-04-17 15:31:28,935 [WARNING] rank 0 starts merging results.
+result file saved to /home/yiren/LAVIS/lavis/output/BLIP2/GQA/20230417152/result/val_vqa_result.json
+2023-04-17 15:31:29,823 [INFO] {'agg_metrics': 30.505644776594053, 'acc': 30.505644776594053}
+(lavis) yiren@mms-large-2:~/LAVIS$
