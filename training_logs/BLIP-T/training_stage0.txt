@@ -1,0 +1,96 @@
+{
+    "run": {
+        "task": "image_text_pretrain",
+        "lr_sched": "linear_warmup_cosine_lr",
+        "init_lr": 0.0001,
+        "min_lr": 1e-05,
+        "warmup_lr": 1e-06,
+        "weight_decay": 0.05,
+        "max_epoch": 5,
+        "batch_size_train": 128,
+        "batch_size_eval": 64,
+        "num_workers": 4,
+        "warmup_steps": 2000,
+        "seed": 42,
+        "output_dir": "output/BLIP2/Pretrain_stage0",
+        "amp": true,
+        "resume_ckpt_path": null,
+        "evaluate": false,
+        "train_splits": [
+            "train"
+        ],
+        "device": "cuda",
+        "world_size": 3,
+        "dist_url": "env://",
+        "distributed": true,
+        "rank": 0,
+        "gpu": 0,
+        "dist_backend": "nccl"
+    },
+    "model": {
+        "arch": "blip2_darkformer",
+        "load_finetuned": false,
+        "pretrained": "https://storage.googleapis.com/sfr-vision-language-research/LAVIS/models/BLIP2/blip2_pretrained_opt2.7b.pth",
+        "finetuned": "",
+        "image_size": 224,
+        "drop_path_rate": 0,
+        "use_grad_checkpoint": false,
+        "vit_precision": "fp16",
+        "freeze_vit": true,
+        "num_query_token": 32,
+        "opt_model": "facebook/opt-2.7b",
+        "prompt": "",
+        "model_type": "pretrain_darkformer_opt2.7b",
+        "load_pretrained": false
+    },
+    "preprocess": {
+        "vis_processor": {
+            "train": {
+                "name": "blip_image_train",
+                "image_size": 224
+            },
+            "eval": {
+                "name": "blip_image_eval",
+                "image_size": 224
+            }
+        },
+        "text_processor": {
+            "train": {
+                "name": "blip_caption"
+            },
+            "eval": {
+                "name": "blip_caption"
+            }
+        }
+    },
+    "datasets": {
+        "laion_sentence_115m": {
+            "data_type": "images",
+            "build_info": {
+                "annotations": {
+                    "train": {
+                        "url": [
+                            "laion115m/annotations/laion_synthetic_filtered_large.json"
+                        ],
+                        "storage": [
+                            "laion115m/annotations/data.json"
+                        ]
+                    }
+                },
+                "images": {
+                    "storage": "laion115m/images"
+                }
+            },
+            "text_processor": {
+                "train": {
+                    "name": "blip_caption"
+                }
+            }
+        }
+    }
+}
+{"train_lr": "0.000", "train_loss": "1.305"}
+{"train_lr": "0.000", "train_loss": "1.000"}
+{"train_lr": "0.000", "train_loss": "0.978"}
+{"train_lr": "0.000", "train_loss": "0.962"}
+{"train_lr": "0.000", "train_loss": "0.952"}
