@@ -7,4 +7,4 @@ env:
   # For default users
   # cache_root: "cache"
   # For internal use with persistent storage
-  cache_root: "/home/yiren/lavis_datasets"
+  cache_root: "/home/yiren/new_ssd/lavis_datasets"

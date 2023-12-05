@@ -20,6 +20,8 @@ We also edit `lavis/models/base_model.py` to allow training from scratch, and in
 conda create -n lavis python=3.8
 conda activate lavis
 pip install -e .
+
+pip install torch==1.13.1+cu117 torchvision==0.14.1+cu117 torchaudio==0.13.1 --extra-index-url https://download.pytorch.org/whl/cu117
 ```
 
 ## Data Preparation
@@ -47,9 +49,12 @@ bash run_scripts/blip-T/train/train_caption_coco.sh
 ```
 
 ## Pretrained Models
-- [ ] [our_stage0]()
-- [ ] [our_stage1]()
-- [ ] [our_stage2]()
+models trained with 4M data:
+- [x] [our_stage0 (`models/ours/stage0`)](https://www.dropbox.com/scl/fo/hj2mmetbergeq3s81lpus/h?rlkey=bxpwgthbk5fg0gmw0s7jt4ctk&dl=0)
+- [x] [our_stage1 (`models/ours/stage1`)](https://www.dropbox.com/scl/fo/hj2mmetbergeq3s81lpus/h?rlkey=bxpwgthbk5fg0gmw0s7jt4ctk&dl=0)
+- [x] [our_stage2 (`models/ours/stage2`)](https://www.dropbox.com/scl/fo/hj2mmetbergeq3s81lpus/h?rlkey=bxpwgthbk5fg0gmw0s7jt4ctk&dl=0)
+- [x] [blip2_stage1 (`models/ours/stage1`)](https://www.dropbox.com/scl/fo/hj2mmetbergeq3s81lpus/h?rlkey=bxpwgthbk5fg0gmw0s7jt4ctk&dl=0)
+- [x] [blip2_stage2 (`models/ours/stage2`)](https://www.dropbox.com/scl/fo/hj2mmetbergeq3s81lpus/h?rlkey=bxpwgthbk5fg0gmw0s7jt4ctk&dl=0)
 
 ## Evaluation
 ```bash

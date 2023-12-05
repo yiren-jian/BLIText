@@ -9,7 +9,7 @@ model:
   model_type: pretrain_opt2.7b
   use_grad_checkpoint: False
   load_pretrained: True
-  pretrained: /home/yiren/LAVIS/lavis/output/BLIP-T/Pretrain_stage2/20230420221/checkpoint_9.pth
+  pretrained: /home/yiren/new_ssd2/LAVIS/lavis/output/BLIP-T/Pretrain_stage2/20230420221/checkpoint_9.pth
 
 datasets:
   gqa: # name of the dataset builder
