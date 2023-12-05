@@ -8,8 +8,8 @@ model:
   model_type: pretrain_pformer
   # TODO: support stage 1 pretraining from scratch (load_pretrained=False does not have effect as of now)
   load_pretrained: True
-  pretrained: "/home/yiren/LAVIS/lavis/output/BLIP-T/Pretrain_stage0/vq/12m-5/pformer.pth"
-  pretrained_stage0: "/home/yiren/LAVIS/lavis/output/BLIP-T/Pretrain_stage0/vq/12m-5/pformer.pth"
+  pretrained: "/home/yiren/new_ssd2/LAVIS/lavis/output/BLIP-T/Pretrain_stage0/pformer.pth"
+  pretrained_stage0: "/home/yiren/new_ssd2/LAVIS/lavis/output/BLIP-T/Pretrain_stage0/pformer.pth"
   freeze_vit: True
   loss_weight: 10.0
 
